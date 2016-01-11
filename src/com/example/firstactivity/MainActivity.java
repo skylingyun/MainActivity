@@ -24,8 +24,26 @@ public class MainActivity extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(MainActivity.this, "You clicked Button 1", Toast.LENGTH_LONG).show();
+				//Toast.makeText(MainActivity.this, "You clicked Button 1", Toast.LENGTH_LONG).show();
+				finish();
 			}
 		});
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+    	getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item){
+    	switch(item.getItemId()){
+    	case R.id.add_item:
+    		Toast.makeText(this, "You clicked Add", Toast.LENGTH_SHORT).show();
+    		break;
+    	case R.id.remove_item:
+    		Toast.makeText(this, "You clicked Remove", Toast.LENGTH_SHORT).show();
+    		break;
+    		default:
+    	}
+		return true;
+    	
     }
 }
