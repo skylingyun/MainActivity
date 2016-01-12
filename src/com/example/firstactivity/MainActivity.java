@@ -1,6 +1,7 @@
 package com.example.firstactivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +26,26 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				//Toast.makeText(MainActivity.this, "You clicked Button 1", Toast.LENGTH_LONG).show();
-				finish();
+				//finish();
+				
+				  //Intent 显式用法
+				  String data = "Hello OtherActivity";
+				  Intent intent = new Intent(MainActivity.this,OtherActivity.class);
+				  intent.putExtra("extra_data",data);
+				 
+				/*
+				 * Intent 隐式用法
+				 * Intent intent = new Intent("com.example.firstactivity.ACTION_START");
+				 * intent.addCategory("com.example.firstactivity.MY_CATEGORY");
+				 */
+				/**
+				 *   调用手机拨打电话和浏览器调用
+				 *   Intent intent = new Intent(Intent.ACTION_DIAL);
+				 *   intent.setData(Uri.parse("tel:10086"));
+				 *   Intent intent = new Intent(Intent.ACTION_VIEW);
+				 *   intent.setData(Uri.parse("http://www.baidu.com"));
+				 */
+				startActivity(intent);
 			}
 		});
     }
