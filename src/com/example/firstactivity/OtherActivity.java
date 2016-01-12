@@ -17,8 +17,26 @@ public class OtherActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.other_main);
-		Intent intent = getIntent();
+		/*Intent intent = getIntent();
 		String data = intent.getStringExtra("extra_data");
-		Log.d("OtherActivity",data);
+		Log.d("OtherActivity",data);*/
+		Button button2 = (Button) findViewById(R.id.button_2);
+		button2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.putExtra("data_return", "Hello MainActivity");
+				setResult(RESULT_OK,intent);
+				finish();
+			}
+		});
+	}
+	@Override
+	public void onBackPressed(){
+		Intent intent = new Intent();
+		intent.putExtra("data_return", "Hello MainActivity");
+		setResult(RESULT_OK,intent);
+		finish();
 	}
 }

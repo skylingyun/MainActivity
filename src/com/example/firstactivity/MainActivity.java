@@ -3,6 +3,7 @@ package com.example.firstactivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,10 +30,11 @@ public class MainActivity extends Activity {
 				//finish();
 				
 				  //Intent 显式用法
-				  String data = "Hello OtherActivity";
-				  Intent intent = new Intent(MainActivity.this,OtherActivity.class);
-				  intent.putExtra("extra_data",data);
-				 
+				/**
+				 * String data = "Hello OtherActivity";
+				 * Intent intent = new Intent(MainActivity.this,OtherActivity.class);
+				 * intent.putExtra("extra_data",data);
+				 */
 				/*
 				 * Intent 隐式用法
 				 * Intent intent = new Intent("com.example.firstactivity.ACTION_START");
@@ -45,9 +47,26 @@ public class MainActivity extends Activity {
 				 *   Intent intent = new Intent(Intent.ACTION_VIEW);
 				 *   intent.setData(Uri.parse("http://www.baidu.com"));
 				 */
-				startActivity(intent);
+				
+				//startActivity(intent);
+				Intent intent = new Intent(MainActivity.this,OtherActivity.class);
+				startActivityForResult(intent, 1);
+				
 			}
 		});
+    }
+    
+    @Override
+    protected void onActivityResult(int requestCode,int resultCode,Intent data){
+    	switch(requestCode){
+    	case 1:
+    		if(resultCode == RESULT_OK){
+    			String returnedData = data.getStringExtra("data_return");
+    			Log.d("MainActivity", returnedData);
+    		}
+    		break;
+    		default:
+    	}
     }
     public boolean onCreateOptionsMenu(Menu menu){
     	getMenuInflater().inflate(R.menu.main, menu);
